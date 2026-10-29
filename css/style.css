@@ -7,13 +7,13 @@
    =================================================================== */
 
 :root {
-  --accent:      #5f6b66;   /* buttons, bars, links */
+  --accent:      #ffffff;   /* buttons, bars, links */
   --accent-dark: #ffffff;   /* hover state */
   --ink:         #1c1c1c;   /* body text */
   --ink-muted:   #ffffff;   /* captions, secondary text */
   --paper:       #B0B7BC;   /* page background */
   --card:        #0076B6;   /* card background */
-  --line:        #e2e0da;   /* borders */
+  --line:        5f6b66;   /* borders */
   --radius:      10px;
 }
 
