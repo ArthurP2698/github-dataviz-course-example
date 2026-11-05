@@ -24,7 +24,20 @@
 * {
   box-sizing: border-box;
 }
-
+div {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+#hours {
+  background-color: white;
+}
+#minutes {
+  background-color: blue;
+}
+#seconds { 
+  background-color: red;
+}
 body {
   margin: 0;
   padding: 2rem 1.25rem 3rem;
@@ -146,51 +159,6 @@ code {
 .counter-output {
   color: var(--ink-muted);
 }
-
-/* ------------------------------------------------------------------
-   Bar chart
-
-   Each row is a grid: a fixed-width label, then the bar, then the value.
-   The bar's WIDTH is set by JavaScript as an inline style.
-   ------------------------------------------------------------------ */
-
-.chart-controls {
-  margin-bottom: 1.1rem;
-}
-
-.chart {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 90px 1fr 42px;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.bar-label {
-  font-size: 0.9rem;
-  text-align: right;
-  color: var(--ink-muted);
-}
-
-.bar {
-  height: 22px;
-  border-radius: 3px;
-  background-color: var(--accent);
-  /* Animate width changes so re-sorting feels smooth. */
-  transition: width 0.4s ease;
-}
-
-.bar-value {
-  font-size: 0.9rem;
-  font-variant-numeric: tabular-nums;
-}
-
 /* ------------------------------------------------------------------
    Small screens
    ------------------------------------------------------------------ */
