@@ -16,21 +16,26 @@ $(document).ready(function() {
   });
 
   // Clock animation
-  function displayTime() {
-    var currentTime = new Date();
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    var w = window.innerWidth - 100;
+function displayTime() {
+  var currentTime = new Date();
 
-    console.log(hours + ":" + minutes + ":" + seconds);
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
 
-    $('#hours').css('left', hours * (w / 23));
-    $('#minutes').css('left', minutes * (w / 60));
-    $('#seconds').css('left', seconds * (w / 60));
-  }
+  // Available space inside the clock card
+  var w = $('#hours').parent().width() - 100;
+  w = Math.max(0, w);
 
-  displayTime();
-  setInterval(displayTime, 1000);
+  // Move each square based on time
+  $('#hours').css('left', hours * (w / 23));
+  $('#minutes').css('left', minutes * (w / 59));
+  $('#seconds').css('left', seconds * (w / 59));
+
+  console.log(hours + ":" + minutes + ":" + seconds);
+}
+
+displayTime();
+setInterval(displayTime, 1000);
 
 });
