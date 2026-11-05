@@ -13,7 +13,7 @@
   --ink-muted:   #ffffff;   /* captions, secondary text */
   --paper:       #B0B7BC;   /* page background */
   --card:        #0076B6;   /* card background */
-  --line:        5f6b66;   /* borders */
+  --line:        #5f6b66;   /* borders */
   --radius:      10px;
 }
 
@@ -24,7 +24,7 @@
 * {
   box-sizing: border-box;
 }
-div {
+#hours, #minutes, #seconds {
   position: relative;
   width: 100px;
   height: 100px;
