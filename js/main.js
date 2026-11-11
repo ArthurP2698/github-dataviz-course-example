@@ -2,29 +2,42 @@
 $(document).ready(function() {
   // Open Weather MAP API Key: bb422d54a8d3ab6f85b816dfb90f58b6
   // https://api.openweathermap.org/data/2.5/weather?q=Sunnyside,NY,USA&units=imperial&appid=bb422d54a8d3ab6f85b816dfb90f58b6
-  function getWeather() {
-    var key = "bb422d54a8d3ab6f85b816dfb90f58b6";
-    var location = "Sunnyside, NY, USA";
-    var url = 
-    "https://api.openweathermap.org/data/2.5/weather?q=" + 
-    location + "&units=imperial&appid=" + 
-    key;
+  
+function getWeather() {
+  var key = "bb422d54a8d3ab6f85b816dfb90f58b6";
 
-    $.getJSON(url, function(json){
-    console.log(json.main.feels_like);
-    console.log(json.weather[0].main);
+  // Show a message while weather loads
+  $('#weather').text("Loading weather...");
+
+  $.getJSON(
+    "https://api.openweathermap.org/data/2.5/weather",
+    {
+      zip: "11104,US",
+      units: "imperial",
+      appid: key
+    }
+  )
+  .done(function(json) {
+    console.log("Weather working!", json);
 
     $('#weather').html(
-      "<h3>" + 
-        location + 
-        "</h3><p>Feels Like Temp: " + 
-        json.main.feels_like + 
-        "</p><p>Description: " + 
-        json.weather[0].main + 
-        "</p>"
+      "<h3>Sunnyside, NY</h3>" +
+      "<p>Feels Like: " +
+      json.main.feels_like + "°F</p>" +
+      "<p>Description: " +
+      json.weather[0].description + "</p>"
     );
-    })
-  }
+  })
+  .fail(function(xhr) {
+    console.error("Weather API Error:", xhr.status);
+    console.error(xhr.responseText);
+
+    $('#weather').text(
+      "Weather unavailable. Error: " + xhr.status
+    );
+  });
+}
+
   getWeather();
 
   // Clock animation
