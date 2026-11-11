@@ -1,4 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- This is the text that shows up in the browser tab. -->
+  <title>My First GitHub Pages Site DEMO!</title>
+
+  <!-- Link to our stylesheet. The path is RELATIVE to this file. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1>Data Viz Web Example</h1>
+    <p class="subtitle">
+      A starter project for Data Visualization Design.
+      Edit these files, push to GitHub, and your changes go live.
+    </p>
+  </header>
+
+  <main>
+
+    <!-- ============================================
+         SECTION 1: Plain HTML + CSS
+         ============================================ -->
+    <section class="card">
+      <h2>1. This part is just HTML and CSS</h2>
+      <p class="subtitle">This is a subtitle for section 1.</p>
+      <p>
+        Everything you see here is written in <code>index.html</code>
+        and styled in <code>css/style.css</code>. No JavaScript required.
+      </p>
+      <p>
+        Try changing the color of this box: open <code>css/style.css</code>
+        and look for the <code>--accent</code> variable near the top.
+      </p>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: JavaScript changes the page
+         ============================================ -->
+    <section class="card">
+      <h2>2. This part is JavaScript</h2>
+      <p>
+        The button below is wired up in <code>js/main.js</code>.
+        Click it and watch the counter change.
+      </p>
+
+      <div class="counter-row">
+        <button id="clickButton" class="button">Click me</button>
+        <!-- JavaScript will replace the text inside this span. -->
+        <span id="clickOutput" class="counter-output">No clicks yet</span>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: A tiny data visualization
+         ============================================ -->
+    <section class="card">
+      <h2>3. A tiny bar chart, built from data</h2>
+      <p>
+        There is no charting library here. The bars below are plain
+        <code>&lt;div&gt;</code> elements whose widths are set by JavaScript
+        from an array of data in <code>js/main.js</code>.
+        This is the core idea behind every visualization tool you will use:
+        <strong>data in, shapes out</strong>.
+      </p>
+
+      <div class="chart-controls">
+        <button id="sortButton" class="button button-secondary">
+          Sort by value
+        </button>
+      </div>
+
+      <!-- JavaScript fills this empty container with bars. -->
+      <div id="chart" class="chart"></div>
+
+      <p class="caption">
+        Coffee consumed per week, by a completely fictional design studio.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Built for <strong>Data Visualization Design</strong> &middot;
+      Hosted free on GitHub Pages
+    </p>
+  </footer>
+
+  <!-- Load the JavaScript LAST, so the HTML above already exists
+       by the time the script runs. -->
+  <script src="js/main.js"></script>
+
+</body>
 </html>
