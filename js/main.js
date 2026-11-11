@@ -1,121 +1,41 @@
-/* ===================================================================
-   main.js
-   All the JavaScript for the starter project.
 
-   Three ideas are demonstrated here:
-     1. Find an element on the page.
-     2. Listen for something the user does.
-     3. Change the page in response.
-   =================================================================== */
+$(document).ready(function() {
 
+  // Purple box animation
+  $('#box').hide().css({
+    'background-color': 'purple',
+    'width': '300px'
+  }).delay(500).fadeIn(1500);
 
-/* -------------------------------------------------------------------
-   PART 1: A click counter
-   ------------------------------------------------------------------- */
-
-// Find the two elements we care about, using the id="" from index.html.
-const clickButton = document.getElementById("clickButton");
-const clickOutput = document.getElementById("clickOutput");
-
-// A place to remember how many times the button has been clicked.
-let clickCount = 0;
-
-// "When the button is clicked, run this function."
-clickButton.addEventListener("click", function () {
-  clickCount = clickCount + 1;
-
-  // Change the text inside the <span>.
-  if (clickCount === 1) {
-    clickOutput.textContent = "1 click";
-  } else {
-    clickOutput.textContent = clickCount + " clicks";
-  }
-});
-
-
-/* -------------------------------------------------------------------
-   PART 2: A bar chart drawn from data
-
-   The data is an array of objects. Each object is one row of the chart.
-   Swap in your own names and numbers and the chart redraws itself.
-   ------------------------------------------------------------------- */
-
-const coffeeData = [
-  { name: "Mon", cups: 14 },
-  { name: "Tue", cups: 9 },
-  { name: "Wed", cups: 21 },
-  { name: "Thu", cups: 17 },
-  { name: "Fri", cups: 26 },
-  { name: "Sat", cups: 5 },
-  { name: "Sun", cups: 3 }
-];
-
-const chart = document.getElementById("chart");
-
-/**
- * Draw the chart.
- * @param {Array} data - array of { name, cups } objects
- */
-function drawChart(data) {
-  // Start from an empty container so we do not stack bars on top of
-  // each other every time we redraw.
-  chart.innerHTML = "";
-
-  // The largest value in the data. Every bar is measured against this,
-  // so the biggest bar fills 100% of the available width.
-  const maxValue = Math.max(...data.map(d => d.cups));
-
-  // Build one row per item in the data.
-  data.forEach(function (d) {
-    const percent = (d.cups / maxValue) * 100;
-
-    const row = document.createElement("div");
-    row.className = "bar-row";
-
-    // Note the inline style on the middle div: this is the only place
-    // where the data actually turns into a visual property.
-    row.innerHTML = `
-      <span class="bar-label">${d.name}</span>
-      <div class="bar" style="width: ${percent}%"></div>
-      <span class="bar-value">${d.cups}</span>
-    `;
-
-    chart.appendChild(row);
+  // Click to move the box
+  $('#box').on('click', function() {
+    $(this).animate({
+      'opacity': 0.5,
+      'margin-left': '+=100'
+    });
   });
+
+  // Clock animation
+function displayTime() {
+  var currentTime = new Date();
+
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+
+  // Available space inside the clock card
+  var w = $('#hours').parent().width() - 100;
+  w = Math.max(0, w);
+
+  // Move each square based on time
+  $('#hours').css('left', hours * (w / 23));
+  $('#minutes').css('left', minutes * (w / 59));
+  $('#seconds').css('left', seconds * (w / 59));
+
+  console.log(hours + ":" + minutes + ":" + seconds);
 }
 
-// Draw the chart once, as soon as the page loads.
-drawChart(coffeeData);
+displayTime();
+setInterval(displayTime, 1000);
 
-
-/* -------------------------------------------------------------------
-   PART 3: Sorting the chart
-
-   Clicking the button toggles between the original order and
-   largest-to-smallest.
-   ------------------------------------------------------------------- */
-
-const sortButton = document.getElementById("sortButton");
-let isSorted = false;
-
-sortButton.addEventListener("click", function () {
-  isSorted = !isSorted;   // flip true <-> false
-
-  if (isSorted) {
-    // .slice() makes a copy first, so the original array is untouched.
-    const sortedData = coffeeData.slice().sort((a, b) => b.cups - a.cups);
-    drawChart(sortedData);
-    sortButton.textContent = "Back to day order";
-  } else {
-    drawChart(coffeeData);
-    sortButton.textContent = "Sort by value";
-  }
 });
-
-
-/* -------------------------------------------------------------------
-   TIP: open your browser's Developer Console (right-click the page ->
-   Inspect -> Console) to see this message and any errors in your code.
-   ------------------------------------------------------------------- */
-
-console.log("main.js loaded. The chart has " + coffeeData.length + " bars.");

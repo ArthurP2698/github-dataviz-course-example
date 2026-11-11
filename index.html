@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!-- This is the text that shows up in the browser tab. -->
-  <title>My First GitHub Pages Site DEMO!</title>
+  <title>Arthur Portillo's Data Visual Driven Website!</title>
 
   <!-- Link to our stylesheet. The path is RELATIVE to this file. -->
   <link rel="stylesheet" href="css/style.css">
@@ -14,10 +13,9 @@
 <body>
 
   <header class="site-header">
-    <h1>Data Viz Web Example</h1>
+    <h1>Arthur Portillo's Data Driven Website</h1>
     <p class="subtitle">
-      A starter project for Data Visualization Design.
-      Edit these files, push to GitHub, and your changes go live.
+      This is a data driven website I designed using simple code.
     </p>
   </header>
 
@@ -27,15 +25,17 @@
          SECTION 1: Plain HTML + CSS
          ============================================ -->
     <section class="card">
-      <h2>1. This part is just HTML and CSS</h2>
-      <p class="subtitle">This is a subtitle for section 1.</p>
+      <h2>1. Who Am I?</h2>
       <p>
-        Everything you see here is written in <code>index.html</code>
-        and styled in <code>css/style.css</code>. No JavaScript required.
-      </p>
-      <p>
-        Try changing the color of this box: open <code>css/style.css</code>
-        and look for the <code>--accent</code> variable near the top.
+        I am a senior at Queens College majoring in Design. I graduated from 
+        LaGuardia Community College with an AAS Degree in their New Media Technology program.
+        I am getting used to the basics of coding while strengthening my skills in visual
+        data. On my free time I love playing volleyball. I go to the gym to stay healthy 
+        and so my knees don't go bad by the time I turn 30. Watching TV and movies is also 
+        another great hobby of mine. I have been watching all type of shows and movies from
+        different times. I tend to immerse myself in them and I get motivated by what I see. 
+        Lastly, playing video games is my favorite thing to do. Halo, Gears of War, Smash Bros. 
+        are just a few of my favorite games of all time.
       </p>
     </section>
 
@@ -43,46 +43,35 @@
          SECTION 2: JavaScript changes the page
          ============================================ -->
     <section class="card">
-      <h2>2. This part is JavaScript</h2>
+      <h2>2. Interactive Data Visualization</h2>
       <p>
-        The button below is wired up in <code>js/main.js</code>.
-        Click it and watch the counter change.
+        This is an overview of my data graph.
       </p>
-
-      <div class="counter-row">
-        <button id="clickButton" class="button">Click me</button>
-        <!-- JavaScript will replace the text inside this span. -->
-        <span id="clickOutput" class="counter-output">No clicks yet</span>
-      </div>
+      <iframe id="dv-1e28441793258127650" src="https://s3.amazonaws.com/datavisual/embeds/2cb88e83a2.html" 
+      style="height:500px; max-width:800px; width:100%; border: 0px; overflow: hidden; visibility: hidden;" 
+      scrolling="no" data-height="500" data-width="800">
+    </iframe><script src="https://s3.amazonaws.com/datavisual/js/responsive.js#!dv-1e28441793258127650,2cb88e83a2.html">
+    </script><script src="https://s3.amazonaws.com/datavisual/js/lazyLoad.js#!dv-1e28441793258127650,2cb88e83a2.html">
+    </script>
     </section>
 
     <!-- ============================================
          SECTION 3: A tiny data visualization
          ============================================ -->
-    <section class="card">
-      <h2>3. A tiny bar chart, built from data</h2>
-      <p>
-        There is no charting library here. The bars below are plain
-        <code>&lt;div&gt;</code> elements whose widths are set by JavaScript
-        from an array of data in <code>js/main.js</code>.
-        This is the core idea behind every visualization tool you will use:
-        <strong>data in, shapes out</strong>.
-      </p>
+    <div 
+      id ="box" 
+      style="width: 200px; height: 200px; background-color: #0076B6; position: relative;">
+    </div>
+    
+<section class="card">
+  <h2>3. Interactive Clock</h2>
 
-      <div class="chart-controls">
-        <button id="sortButton" class="button button-secondary">
-          Sort by value
-        </button>
-      </div>
+  <div id="hours"></div>
+  <div id="minutes"></div>
+  <div id="seconds"></div>
+</section>
 
       <!-- JavaScript fills this empty container with bars. -->
-      <div id="chart" class="chart"></div>
-
-      <p class="caption">
-        Coffee consumed per week, by a completely fictional design studio.
-      </p>
-    </section>
-
   </main>
 
   <footer class="site-footer">
@@ -94,7 +83,9 @@
 
   <!-- Load the JavaScript LAST, so the HTML above already exists
        by the time the script runs. -->
-  <script src="js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
