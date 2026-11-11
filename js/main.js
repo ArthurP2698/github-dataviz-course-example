@@ -14,7 +14,7 @@ $(document).ready(function() {
     console.log(json.main.feels_like);
     console.log(json.weather[0].main);
 
-    $('weather').html(
+    $('#weather').html(
       "<h3>" + 
         location + 
         "</h3><p>Feels Like Temp: " + 
