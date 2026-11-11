@@ -14,7 +14,7 @@ $(document).ready(function() {
     console.log(json.main.feels_like);
     console.log(json.weather[0].main);
 
-    $('body').append(
+    $('weather').html(
       "<h3>" + 
         location + 
         "</h3><p>Feels Like Temp: " + 
@@ -26,9 +26,7 @@ $(document).ready(function() {
     })
   }
   getWeather();
-}
-function getWeather() {'
-}
+
   // Clock animation
 function displayTime() {
   var currentTime = new Date();
