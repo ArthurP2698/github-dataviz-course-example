@@ -1,66 +1,225 @@
-
 $(document).ready(function() {
   // Open Weather MAP API Key: bb422d54a8d3ab6f85b816dfb90f58b6
   // https://api.openweathermap.org/data/2.5/weather?q=Sunnyside,NY,USA&units=imperial&appid=bb422d54a8d3ab6f85b816dfb90f58b6
   
-function getWeather() {
-  var key = "bb422d54a8d3ab6f85b816dfb90f58b6";
+  
+  // =========================================
+  // SECTION 4: OPENWEATHER API
+  // =========================================
 
-  // Show a message while weather loads
-  $('#weather').text("Loading weather...");
+  function getWeather() {
 
-  $.getJSON(
-    "https://api.openweathermap.org/data/2.5/weather",
-    {
-      zip: "11104,US",
-      units: "imperial",
-      appid: key
-    }
-  )
-  .done(function(json) {
-    console.log("Weather working!", json);
+    var key = "YOUR_EXISTING_API_KEY";
 
-    $('#weather').html(
-      "<h3>Sunnyside, NY</h3>" +
-      "<p>Feels Like: " +
-      json.main.feels_like + "°F</p>" +
-      "<p>Description: " +
-      json.weather[0].description + "</p>"
-    );
-  })
-  .fail(function(xhr) {
-    console.error("Weather API Error:", xhr.status);
-    console.error(xhr.responseText);
+    var $refresh = $('#weather-refresh');
 
-    $('#weather').text(
-      "Weather unavailable. Error: " + xhr.status
-    );
-  });
-}
+    // Show loading message
+    $('#weather-message').text('Updating weather...');
 
+    $refresh.prop('disabled', true)
+            .text('Refreshing...');
+
+
+    // Connect to OpenWeather API
+    $.getJSON(
+      'https://api.openweathermap.org/data/2.5/weather',
+      {
+        zip: '11104,US',
+        units: 'imperial',
+        appid: key
+      }
+    )
+
+    // =========================================
+    // API SUCCESS
+    // =========================================
+
+    .done(function(json) {
+
+      console.log('Weather API working!', json);
+
+      var conditions = json.weather[0];
+
+
+      // Current temperature
+      $('#weather-temp').text(
+        Math.round(json.main.temp) + '°F'
+      );
+
+
+      // Weather description
+      $('#weather-description').text(
+        conditions.description
+      );
+
+
+      // Feels-like temperature
+      $('#weather-feels-like').text(
+        Math.round(json.main.feels_like) + '°F'
+      );
+
+
+      // Humidity
+      $('#weather-humidity').text(
+        Math.round(json.main.humidity) + '%'
+      );
+
+
+      // Wind speed
+      $('#weather-wind').text(
+        Math.round(json.wind.speed) + ' mph'
+      );
+
+
+      // =========================================
+      // WEATHER ICON
+      // =========================================
+
+      var iconCode = conditions.icon;
+
+      var $icon = $('#weather-icon');
+
+      if (/^[0-9]{2}[dn]$/.test(iconCode)) {
+
+        $icon.off('load error')
+
+        .on('load', function() {
+
+          $(this).prop('hidden', false);
+
+          $('#weather-icon-placeholder').hide();
+
+        })
+
+        .on('error', function() {
+
+          $(this).prop('hidden', true);
+
+          $('#weather-icon-placeholder').show();
+
+        });
+
+
+        // Load the OpenWeather icon
+        $icon.prop('hidden', true).attr(
+          'src',
+          'https://openweathermap.org/img/wn/' +
+          iconCode + '@2x.png'
+        );
+
+      }
+
+
+      // =========================================
+      // LAST UPDATED TIME
+      // =========================================
+
+      var updatedTime = new Date().toLocaleTimeString(
+        [],
+        {
+          hour: 'numeric',
+          minute: '2-digit'
+        }
+      );
+
+      $('#weather-message').text(
+        'Updated at ' + updatedTime
+      );
+
+    })
+
+
+    // =========================================
+    // API ERROR HANDLING
+    // =========================================
+
+    .fail(function(xhr) {
+
+      console.error(
+        'OpenWeather request failed:',
+        xhr.status,
+        xhr.responseText
+      );
+
+      var detail = xhr.status
+        ? ' (error ' + xhr.status + ')'
+        : '';
+
+      $('#weather-message').text(
+        'Could not update weather' +
+        detail +
+        '. Try again.'
+      );
+
+      $('#weather-description').text(
+        'Weather is temporarily unavailable'
+      );
+
+    })
+
+
+    // =========================================
+    // RESET REFRESH BUTTON
+    // =========================================
+
+    .always(function() {
+
+      $refresh.prop('disabled', false)
+              .text('↻ Refresh');
+
+    });
+
+  }
+
+
+  // Activate refresh button
+  $('#weather-refresh').on('click', getWeather);
+
+
+  // Load weather automatically
   getWeather();
 
-  // Clock animation
-function displayTime() {
-  var currentTime = new Date();
 
-  var hours = currentTime.getHours();
-  var minutes = currentTime.getMinutes();
-  var seconds = currentTime.getSeconds();
 
-  // Available space inside the clock card
-  var w = $('#hours').parent().width() - 100;
-  w = Math.max(0, w);
+  // =========================================
+  // SECTION 3: INTERACTIVE CLOCK
+  // =========================================
 
-  // Move each square based on time
-  $('#hours').css('left', hours * (w / 23));
-  $('#minutes').css('left', minutes * (w / 59));
-  $('#seconds').css('left', seconds * (w / 59));
+  function displayTime() {
 
-  console.log(hours + ":" + minutes + ":" + seconds);
-}
+    var currentTime = new Date();
 
-displayTime();
-setInterval(displayTime, 1000);
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+
+    // Available space inside clock card
+    var w = $('#hours').parent().width() - 100;
+
+    w = Math.max(0, w);
+
+
+    // Move the clock squares
+    $('#hours').css('left', hours * (w / 23));
+
+    $('#minutes').css('left', minutes * (w / 59));
+
+    $('#seconds').css('left', seconds * (w / 59));
+
+
+    console.log(
+      hours + ':' + minutes + ':' + seconds
+    );
+
+  }
+
+
+  // Start clock
+  displayTime();
+
+  // Update clock every second
+  setInterval(displayTime, 1000);
 
 });
+
