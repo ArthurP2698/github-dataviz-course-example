@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   function getWeather() {
 
-    var key = "YOUR_EXISTING_API_KEY";
+    var key = "bb422d54a8d3ab6f85b816dfb90f58b6";
 
     var $refresh = $('#weather-refresh');
 
