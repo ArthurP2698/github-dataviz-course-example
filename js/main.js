@@ -1,20 +1,34 @@
 
 $(document).ready(function() {
+  // Open Weather MAP API Key: bb422d54a8d3ab6f85b816dfb90f58b6
+  // https://api.openweathermap.org/data/2.5/weather?q=Sunnyside,NY,USA&units=imperial&appid=bb422d54a8d3ab6f85b816dfb90f58b6
+  function getWeather() {
+    var key = "bb422d54a8d3ab6f85b816dfb90f58b6";
+    var location = "Sunnyside, NY, USA";
+    var url = 
+    "https://api.openweathermap.org/data/2.5/weather?q=" + 
+    location + "&units=imperial&appid=" + 
+    key;
 
-  // Purple box animation
-  $('#box').hide().css({
-    'background-color': 'purple',
-    'width': '300px'
-  }).delay(500).fadeIn(1500);
+    $.getJSON(url, function(json){
+    console.log(json.main.feels_like);
+    console.log(json.weather[0].main);
 
-  // Click to move the box
-  $('#box').on('click', function() {
-    $(this).animate({
-      'opacity': 0.5,
-      'margin-left': '+=100'
-    });
-  });
-
+    $('body').append(
+      "<h3>" + 
+        location + 
+        "</h3><p>Feels Like Temp: " + 
+        json.main.feels_like + 
+        "</p><p>Description: " + 
+        json.weather[0].main + 
+        "</p>"
+    );
+    })
+  }
+  getWeather();
+}
+function getWeather() {'
+}
   // Clock animation
 function displayTime() {
   var currentTime = new Date();
