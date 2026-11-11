@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <!-- jQuery -->
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous">
+  </script>
+
+  <!-- JavaScript -->
   <script src="js/main.js"></script>
-  <!-- This is the text that shows up in the browser tab. -->
+
   <title>Arthur Portillo's Data Visual Driven Website!</title>
 
-  <!-- Link to our stylesheet. The path is RELATIVE to this file. -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+  <!-- WEBSITE HEADER -->
   <header class="site-header">
     <h1>Arthur Portillo's Data Driven Website</h1>
+
     <p class="subtitle">
       This is a data driven website I designed using simple code!
     </p>
@@ -23,66 +34,211 @@
 
   <main>
 
-    <!-- ============================================
-         SECTION 1: Plain HTML + CSS
-         ============================================ -->
+    <!-- SECTION 1: ABOUT ME -->
     <section class="card">
       <h2>1. Who Am I?</h2>
+
       <p>
-        I am a senior at Queens College majoring in Design. I graduated from 
-        LaGuardia Community College with an AAS Degree in their New Media Technology program.
-        I am getting used to the basics of coding while strengthening my skills in visual
-        data. On my free time I love playing volleyball. I go to the gym to stay healthy 
-        and so my knees don't go bad by the time I turn 30. Watching TV and movies is also 
-        another great hobby of mine. I have been watching all type of shows and movies from
-        different times. I tend to immerse myself in them and I get motivated by what I see. 
-        Lastly, playing video games is my favorite thing to do. Halo, Gears of War, Smash Bros. 
+        I am a senior at Queens College majoring in Design.
+        I graduated from LaGuardia Community College with
+        an AAS Degree in their New Media Technology program.
+
+        I am getting used to the basics of coding while
+        strengthening my skills in visual data.
+
+        On my free time I love playing volleyball.
+        I go to the gym to stay healthy and so my knees
+        don't go bad by the time I turn 30.
+
+        Watching TV and movies is also another great
+        hobby of mine. I have been watching all type
+        of shows and movies from different times.
+        I tend to immerse myself in them and I get
+        motivated by what I see.
+
+        Lastly, playing video games is my favorite
+        thing to do. Halo, Gears of War, Smash Bros.
         are just a few of my favorite games of all time.
       </p>
     </section>
 
-    <!-- ============================================
-         SECTION 2: JavaScript changes the page
-         ============================================ -->
+
+    <!-- SECTION 2: DATA VISUALIZATION -->
     <section class="card">
       <h2>2. Interactive Data Visualization</h2>
+
       <p>
         This is an overview of my data graph.
       </p>
-      <iframe id="dv-1e28441793258127650" src="https://s3.amazonaws.com/datavisual/embeds/2cb88e83a2.html" 
-      style="height:500px; max-width:800px; width:100%; border: 0px; overflow: hidden; visibility: hidden;" 
-      scrolling="no" data-height="500" data-width="800">
-    </iframe><script src="https://s3.amazonaws.com/datavisual/js/responsive.js#!dv-1e28441793258127650,2cb88e83a2.html">
-    </script><script src="https://s3.amazonaws.com/datavisual/js/lazyLoad.js#!dv-1e28441793258127650,2cb88e83a2.html">
-    </script>
+
+      <iframe
+        id="dv-1e28441793258127650"
+        src="https://s3.amazonaws.com/datavisual/embeds/2cb88e83a2.html"
+        style="height:500px; max-width:800px; width:100%;
+        border:0px; overflow:hidden; visibility:hidden;"
+        scrolling="no"
+        data-height="500"
+        data-width="800">
+      </iframe>
+
+      <script src="https://s3.amazonaws.com/datavisual/js/responsive.js#!dv-1e28441793258127650,2cb88e83a2.html"></script>
+
+      <script src="https://s3.amazonaws.com/datavisual/js/lazyLoad.js#!dv-1e28441793258127650,2cb88e83a2.html"></script>
+
     </section>
 
-    <!-- ============================================
-         SECTION 3: A tiny data visualization
-         ============================================ -->  
-  <section class="card">
-    <h2>3. Interactive Clock</h2>
 
-    <div id="hours"></div>
-    <div id="minutes"></div>
-    <div id="seconds"></div>
-  </section>
-  
-<section class="card">
-  <h3>4. Location</h3>
+    <!-- SECTION 3: INTERACTIVE CLOCK -->
+    <section class="card">
+      <h2>3. Interactive Clock</h2>
 
-  <div id="weather"></div>
+      <div id="hours"></div>
+      <div id="minutes"></div>
+      <div id="seconds"></div>
+    </section>
 
-</section>
 
-      <!-- JavaScript fills this empty container with bars. -->
+    <!-- SECTION 4: WEATHER WIDGET -->
+    <section class="card weather-section"
+             aria-labelledby="weather-heading">
+
+      <h3 id="weather-heading">4. Location</h3>
+
+      <div id="weather"
+           class="weather-widget"
+           aria-label="Current weather in Sunnyside, New York">
+
+        <!-- Weather heading -->
+        <div class="weather-top">
+
+          <div>
+            <p class="weather-kicker">
+              CURRENT WEATHER
+            </p>
+
+            <h3 class="weather-city">
+              Sunnyside, NY
+            </h3>
+
+            <p class="weather-area">
+              Queens, New York
+            </p>
+          </div>
+
+          <span class="weather-pill">
+            <span class="weather-dot"></span>
+            LIVE CONDITIONS
+          </span>
+
+        </div>
+
+
+        <!-- Temperature and weather icon -->
+        <div class="weather-current">
+
+          <div>
+            <p id="weather-temp"
+               class="weather-temperature">
+              --°F
+            </p>
+
+            <p id="weather-description"
+               class="weather-condition">
+              Loading weather...
+            </p>
+          </div>
+
+          <div class="weather-icon-box"
+               aria-hidden="true">
+
+            <span id="weather-icon-placeholder"
+                  class="weather-icon-placeholder">
+              ☁
+            </span>
+
+            <img
+              id="weather-icon"
+              alt=""
+              width="124"
+              height="124"
+              hidden>
+          </div>
+
+        </div>
+
+
+        <!-- Additional weather information -->
+        <div class="weather-details">
+
+          <!-- Feels like -->
+          <div class="weather-detail">
+            <span class="weather-detail-label">
+              FEELS LIKE
+            </span>
+
+            <strong id="weather-feels-like">
+              --°F
+            </strong>
+          </div>
+
+          <!-- Humidity -->
+          <div class="weather-detail">
+            <span class="weather-detail-label">
+              HUMIDITY
+            </span>
+
+            <strong id="weather-humidity">
+              --%
+            </strong>
+          </div>
+
+          <!-- Wind speed -->
+          <div class="weather-detail">
+            <span class="weather-detail-label">
+              WIND
+            </span>
+
+            <strong id="weather-wind">
+              -- mph
+            </strong>
+          </div>
+
+        </div>
+
+
+        <!-- Refresh button -->
+        <div class="weather-bottom">
+
+          <p id="weather-message"
+             class="weather-message"
+             role="status">
+            Getting the latest conditions...
+          </p>
+
+          <button
+            id="weather-refresh"
+            class="weather-refresh"
+            type="button">
+            ↻ Refresh
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
+
+  <!-- WEBSITE FOOTER -->
   <footer class="site-footer">
     <p>
-      Built for <strong>Data Visualization Design</strong> &middot;
-      Hosted free on GitHub Pages
+      Built for
+      <strong>Data Visualization Design</strong>
+      &middot; Hosted free on GitHub Pages
     </p>
   </footer>
+
 </body>
 </html>
